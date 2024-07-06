@@ -1,4 +1,4 @@
-certifi==2023.7.22
+certifi==2024.7.4
 cpplint
 cycler
 fonttools
