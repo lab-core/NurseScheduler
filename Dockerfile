@@ -1,4 +1,6 @@
-FROM legraina/bcp
+# legraina/bcp is built by lab-core/coin (Debian 13, GCC 14 since 2.0)
+ARG BASE_IMAGE=legraina/bcp:2.0
+FROM ${BASE_IMAGE}
 
 # create a user
 RUN useradd -ms /bin/bash dantzig
@@ -16,7 +18,7 @@ WORKDIR /home/dantzig/ns/
 
 ## Compile the nurse scheduler
 ARG CMAKE_BUILD_TYPE=Release
-RUN echo "set(BOOST_DIR /usr/local/include)" >> CMakeDefinitionsLists.txt && \
+RUN echo "set(BOOST_DIR /usr/include)" >> CMakeDefinitionsLists.txt && \
     echo "SET(USE_BOOST True)" >> CMakeDefinitionsLists.txt && \
     echo "add_definitions(-DMBCP)" >> CMakeDefinitionsLists.txt && \
     mkdir build && \
